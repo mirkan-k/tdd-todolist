@@ -17,4 +17,4 @@ TodoList (class)
   - getIncompleteItems(): return todo items with isComplete = false
   - getCompleteItem(): return todo items with isComplete = true
   - searchItem(input: ID): if Item exists return Item with matching ID, if not return 'This Item does not exist :('
-  - removeItem(input: ID): return updated todo list
+  - removeItem(input: ID): return updated todo list with specified Item removed

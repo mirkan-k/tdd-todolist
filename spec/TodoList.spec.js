@@ -102,29 +102,61 @@ describe("TodoList", () => {
     // verify
     expect(result).toEqual(expected)
   });
-  
-  it("gets all complete items", () => {
+
+  it("search for Item via ID", () => {
     // set up
     const todoList = new TodoList()
 
     todoList.createTodo("turn the heating on!")
     todoList.createTodo("grab a blanket")
     todoList.createTodo("grab some socks")
-    todoList.setItemComplete(1)
-    todoList.setItemComplete(3)
+
+    const expected = {
+      id: 2,
+      text: "grab a blanket",
+      isComplete: false
+    }
+    // execute
+    const result = todoList.searchTodoList(2)
+    // verify
+    expect(result).toEqual(expected)
+  });
+
+  it("invalid search for Item with that ID", () => {
+    // set up
+    const todoList = new TodoList()
+
+    todoList.createTodo("turn the heating on!")
+    todoList.createTodo("grab a blanket")
+    todoList.createTodo("grab some socks")
+
+    const expected = 'This Item does not exist :('
+    // execute
+    const result = todoList.searchTodoList(5)
+    // verify
+    expect(result).toEqual(expected)
+  });
+
+  it("remove an Item via ID", () => {
+    // set up
+    const todoList = new TodoList()
+
+    todoList.createTodo("turn the heating on!")
+    todoList.createTodo("grab a blanket")
+    todoList.createTodo("grab some socks")
 
     const expected = [{
       id: 1,
       text: "turn the heating on!",
-      isComplete: true
+      isComplete: false
     }, {
-      id: 3,
-      text: "grab some socks",
-      isComplete: true
+    id: 2,
+      text: "grab a blanket",
+      isComplete: false
     }]
     // execute
-    const result = todoList.getCompleteItems()
+    const result = todoList.removeItem(3)
     // verify
     expect(result).toEqual(expected)
-  })
+  });
 })
